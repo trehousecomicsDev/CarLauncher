@@ -150,18 +150,18 @@ class AppLauncherUtils {
         return null;
     }
 
-    /**
-     * 获取我们希望在启动器中以未排序的顺序看到的所有组件，包括启动器活动和媒体服务。
-     *
-     * @param blackList             要隐藏的应用程序（包名称）列表（可能为空）
-     * @param customMediaComponents 不应在Launcher中显示的媒体组件（组件名称）列表（可能为空），因为将显示其应用程序的Launcher活动
-     * @param appTypes              要显示的应用程序类型（例如：全部或仅媒体源）
-     * @param openMediaCenter       当用户选择媒体源时，启动器是否应导航到media center。
-     * @param launcherApps          {@link LauncherApps}系统服务
-     * @param carPackageManager     {@link CarPackageManager}系统服务
-     * @param packageManager        {@link PackageManager}系统服务
-     * @return 一个新的 {@link LauncherAppsInfo}
-     */
+/**
+      * Gets all the components we want to see in the launcher in unsorted order, including launcher activities and media services.
+      *
+      * @param blackList list of applications (package names) to hide (may be empty)
+      * @param customMediaComponents A list (possibly empty) of media components (component names) that should not be displayed in the Launcher, since their application's Launcher activity will be displayed
+      * @param appTypes application types to display (eg: all or media sources only)
+      * @param openMediaCenter Whether the launcher should navigate to the media center when the user selects a media source.
+      * @param launcherApps {@link LauncherApps} System Services
+      * @param carPackageManager {@link CarPackageManager} system service
+      * @param packageManager {@link PackageManager} system service
+      * @return a new {@link LauncherAppsInfo}
+      */
     @NonNull
     static LauncherAppsInfo getLauncherApps(
             @NonNull Set<String> blackList,
@@ -177,11 +177,11 @@ class AppLauncherUtils {
                 || carMediaManager == null) {
             return EMPTY_APPS_INFO;
         }
-        // 检索所有符合给定意图的服务
+       // retrieve all services matching the given intent
         List<ResolveInfo> mediaServices = packageManager.queryIntentServices(
                 new Intent(MediaBrowserService.SERVICE_INTERFACE),
                 PackageManager.GET_RESOLVED_FILTER);
-        // 检索指定packageName的Activity的列表
+        // Retrieves a list of Activities with the specified packageName
         List<LauncherActivityInfo> availableActivities =
                 launcherApps.getActivityList(null, Process.myUserHandle());
 
@@ -216,7 +216,7 @@ class AppLauncherUtils {
                             }
                         },
                         context -> {
-                            // 返回系统中所有MainActivity带有Intent.CATEGORY_INFO 和 Intent.CATEGORY_LAUNCHER的intent
+                            // Return all MainActivity intents with Intent.CATEGORY_INFO and Intent.CATEGORY_LAUNCHER in the system
                             Intent packageLaunchIntent =
                                     packageManager.getLaunchIntentForPackage(packageName);
                             AppLauncherUtils.launchApp(context,
@@ -242,7 +242,7 @@ class AppLauncherUtils {
                         .setComponent(componentName)
                         .addCategory(Intent.CATEGORY_LAUNCHER)
                         .setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                    // 获取app的name，和 app的图标
+                    // Get the name of the app, and the icon of the app
                     AppMetaData appMetaData = new AppMetaData(
                         info.getLabel(),
                         componentName,
