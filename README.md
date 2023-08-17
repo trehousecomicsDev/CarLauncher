@@ -193,7 +193,7 @@ Set whether the current Activity is active and whether it will cause the driver 
 
 ###AppGridActivity
 `AppGridActivity` is used to display all APPs in the system and provide an entry for users.
-![image](https://upload-images.jianshu.io/upload_images/3146091-77901fda6490bf03?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+![image](https://upload-images.jianshu.io/upload_images/3146091-7ddcfb41a0579782?imageMogr2/auto-orient/strip|imageView2/2/w/1069/format/webp)
 
 As application developers, we need to pay attention to how the following two functions are implemented.
 * Display all APPs in the system, and filter out some APPs that do not need to be displayed on the desktop (for example: Service in the background)
