@@ -16,7 +16,7 @@ The native `Carlaunher` code is not complicated, it mainly cooperates with Syste
 * Show the quick home page
      ![](https://upload-images.jianshu.io/upload_images/3146091-837aace4d9bc39ee?imageMogr2/auto-orient/strip|imageView2/2/w/1071/format/webp)
 * Display the desktop of all APP entrances
-     ![](https://upload-images.jianshu.io/upload_images/3146091-83b1e2578c354e4e?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+     ![](https://source.android.com/static/docs/automotive/images/rotary_01.png)
 
 It should be noted that only the content in the red box belongs to `CarLauncher`, and the content outside the red box belongs to `SystemUI`. Although `SystemUI` has 6 buttons on the NaviBar below, only clicking **Home** and **App Desktop** will enter **CarLauncher**, and clicking other buttons will enter other apps, so they are not included in this article The analysis scope of the article.
 
