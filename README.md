@@ -14,7 +14,7 @@ Although `Launcher` is also an APP, it involves more technical points than ordin
 ## CarLauncher function analysis
 The native `Carlaunher` code is not complicated, it mainly cooperates with SystemUI to complete the following two functions.
 * Show the quick home page
-     ![](https://upload-images.jianshu.io/upload_images/3146091-c215149f464b1fe1?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+     ![](https://upload-images.jianshu.io/upload_images/3146091-837aace4d9bc39ee?imageMogr2/auto-orient/strip|imageView2/2/w/1071/format/webp)
 * Display the desktop of all APP entrances
      ![](https://upload-images.jianshu.io/upload_images/3146091-83b1e2578c354e4e?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
