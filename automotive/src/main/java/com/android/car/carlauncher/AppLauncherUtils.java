@@ -50,7 +50,7 @@ import java.util.Map;
 import java.util.Set;
 
 /**
- * 包含应用程序启动程序类使用的帮助器方法的Util类。
+ * Util class containing helper methods used by the application launcher class.
  */
 class AppLauncherUtils {
     private static final String TAG = "AppLauncherUtils";
