@@ -40,19 +40,19 @@ import androidx.fragment.app.FragmentTransaction;
 import com.android.car.media.common.PlaybackFragment;
 
 /**
- * Android Automotive的基本启动器，演示如何使用{@link ActivityView}托管地图内容。
- *
- * <p>注意：在某些设备上，ActivityView的渲染宽度、高度和/或纵横比可能不符合Android兼容性定义。
- * 开发人员应与内容所有者合作，以确保在扩展或模拟此类时正确呈现内容。
- *
- * <p>注意：由于ActivityView中的hosted maps活动当前处于虚拟屏幕，因此系统认为该活动始终位于前面。
- * 以直接意图启动“地图”活动将不起作用。
- * 要在real display上启动“地图”活动，请使用{@link Intent#CATEGORY_APP_MAPS}类别将意图发送给启动器，
- * 启动器将在real display上启动活动。
- *
- * <p>注意：从当前用户切换或切换回当前用户时，ActivityView中虚拟显示的状态是不确定的。
- * 为避免崩溃，此活动将在切换用户时完成。
- */
+  * A basic launcher for Android Automotive that demonstrates how to use {@link ActivityView} to host map content.
+  *
+  * <p>Note: On some devices, the ActivityView's rendered width, height, and/or aspect ratio may not meet the Android Compatibility Definition.
+  * Developers should work with content owners to ensure proper rendering of content when extending or mocking this class.
+  *
+  * <p>Note: Since the hosted maps activity in the ActivityView is currently on the virtual screen, the system considers the activity to always be in front.
+  * Launching the Maps activity with a direct intent will not work.
+  * To start the "Maps" activity on the real display, use the {@link Intent#CATEGORY_APP_MAPS} category to send the intent to the launcher,
+  * The launcher will start the activity on the real display.
+  *
+  * <p>Note: When switching from or back to the current user, the status of the virtual display in ActivityView is uncertain.
+  * To avoid crashes, this activity will be done when switching users.
+  */
 public class CarLauncher extends FragmentActivity {
     private static final String TAG = "CarLauncher";
     private static final boolean DEBUG = false;
@@ -64,7 +64,7 @@ public class CarLauncher extends FragmentActivity {
     private final Handler mMainHandler = new Handler(Looper.getMainLooper());
 
     /**
-     * 一旦我们记录活动已完全绘制，则设置为{@code true}。
+     * Set to {@code true} once we record that the activity has been fully drawn.
      */
     private boolean mIsReadyLogged;
 
@@ -121,8 +121,8 @@ public class CarLauncher extends FragmentActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        // 在多窗口模式下不显示“地图”面板。
-        // 注意：拆分屏幕的CTS测试与启动器默认活动的活动视图不兼容
+      // Do not show the Map panel in multi-window mode.
+         // Note: CTS tests for split screen are not compatible with the activity view of the launcher's default activity
         if (isInMultiWindowMode() || isInPictureInPictureMode()) {
             setContentView(R.layout.car_launcher_multiwindow);
         } else {
@@ -169,11 +169,11 @@ public class CarLauncher extends FragmentActivity {
         if (mActivityView == null || !mActivityViewReady) {
             return;
         }
-        // 如果我们碰巧被重新呈现为多显示模式，我们将跳过在“Activity”视图中启动内容，因为我们无论如何都会被重新创建。
+        // If we happen to be re-rendered into multi-display mode, we'll skip launching content in the Activity view, since we'll be re-created anyway.
         if (isInMultiWindowMode() || isInPictureInPictureMode()) {
             return;
         }
-        // 在“活动可见性测试（ActivityVisibilityTests）”的显示关闭时不要启动地图。
+        // Do not start the map when the display of the "ActivityVisibilityTests" is off.
         if (getDisplay().getState() != Display.STATE_ON) {
             return;
         }
@@ -185,7 +185,7 @@ public class CarLauncher extends FragmentActivity {
     }
 
     private Intent getMapsIntent() {
-        // 为应用程序的主Activity创建一个意图，不指定要运行的特定Activity，而是提供一个选择器来查找该Activity。
+        // Create an intent for your application's main activity that doesn't specify a specific activity to run, but instead provides a selector to find that activity.
         return Intent.makeMainSelectorActivity(Intent.ACTION_MAIN, Intent.CATEGORY_APP_MAPS);
     }
 
@@ -213,7 +213,7 @@ public class CarLauncher extends FragmentActivity {
     }
 
     /**
-     * 记录活动已准备就绪。用于启动时间诊断。
+   * Recording activity is ready. Used for boot time diagnostics.
      */
     private void maybeLogReady() {
         if (DEBUG) {
@@ -221,7 +221,7 @@ public class CarLauncher extends FragmentActivity {
                     + ", started=" + mIsStarted + ", alreadyLogged: " + mIsReadyLogged);
         }
         if (mActivityViewReady && mIsStarted) {
-            // 我们每次都应该报告-Android框架将在第一次有效绘制日志时处理日志记录，但是。。。。
+          // We should report every time - the Android framework will handle logging the first time the log is effectively drawn, however. . . .
             reportFullyDrawn();
             if (!mIsReadyLogged) {
                 // ... we want to manually check that the Log.i below (which is useful to show
